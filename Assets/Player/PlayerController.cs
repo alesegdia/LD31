@@ -8,14 +8,6 @@ public class PlayerController : MonoBehaviour {
     Animator animator;
     public GameObject controlledGameobject;
     public GameObject graphicGameobject;
-    public Texture heart;
-
-	[System.Serializable]
-	public struct Health {
-		public int current;
-		public int total;
-	};
-	public Health health;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +15,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		// handle horizontal and vertical input forces
         float hor, ver;
         hor = ver = 0;
@@ -36,7 +28,6 @@ public class PlayerController : MonoBehaviour {
 		Vector2 vel = controlledGameobject.rigidbody2D.velocity;
         if (vel.y > maxSpeed.y)
         {
-            Debug.Log(vel.y);
             vel.y = maxSpeed.y;
         }
 		if (Mathf.Abs(vel.x) > maxSpeed.x) vel.x = maxSpeed.x * Mathf.Sign(vel.x);
@@ -44,10 +35,11 @@ public class PlayerController : MonoBehaviour {
         animator.SetFloat("Vertical Speed", controlledGameobject.rigidbody2D.velocity.y);
 
 	}
-
-	void OnGUI()
+	void OnTrigger2DStay(Collider2D other)
     {
-        for (int i = 0; i < health.current; i++ )
-            GUI.DrawTexture(new Rect((heart.width + 2) * i, 0, heart.width, heart.height), heart);
+        Debug.Log("HEY!!");
     }
+
+
+
 }

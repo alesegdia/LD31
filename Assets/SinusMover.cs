@@ -29,7 +29,7 @@ public class SinusMover : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         float delta = amplitude * Mathf.Sin(Time.time * alpha);
         SetProperAxis(pos + delta);
 	}
