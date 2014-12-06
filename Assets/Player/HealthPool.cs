@@ -1,23 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Powerup : MonoBehaviour {
+public class HealthPool : MonoBehaviour {
 
-    public enum Type
-    {
-        HEALTH, SPEED
-    }
-
-    public Type type;
-    public float quantity;
+    public PlayerController playerScript;
+    public GameObject heartProp;
 
 	// Use this for initialization
 	void Start () {
-	
 	}
+
+	void OnRenderObject()
+    {
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	
+			
 	}
 }

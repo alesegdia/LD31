@@ -8,6 +8,14 @@ public class PlayerController : MonoBehaviour {
     Animator animator;
     public GameObject controlledGameobject;
     public GameObject graphicGameobject;
+    public Texture heart;
+
+	[System.Serializable]
+	public struct Health {
+		public int current;
+		public int total;
+	};
+	public Health health;
 
 	// Use this for initialization
 	void Start () {
@@ -34,5 +42,12 @@ public class PlayerController : MonoBehaviour {
 		if (Mathf.Abs(vel.x) > maxSpeed.x) vel.x = maxSpeed.x * Mathf.Sign(vel.x);
         controlledGameobject.rigidbody2D.velocity = vel;
         animator.SetFloat("Vertical Speed", controlledGameobject.rigidbody2D.velocity.y);
+
 	}
+
+	void OnGUI()
+    {
+        for (int i = 0; i < health.current; i++ )
+            GUI.DrawTexture(new Rect((heart.width + 2) * i, 0, heart.width, heart.height), heart);
+    }
 }
