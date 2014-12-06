@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Camera : MonoBehaviour {
 
-    private int currentColor = 0;
+    private int currentColor = 1;
 	public Color[] colors;
 	public float[] times;
     public Color initialColor;
@@ -19,12 +19,15 @@ public class Camera : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float t = 0;
-		for( int i = 0; i < times.Length-1; i++ )
+		for( int i = 1; i < times.Length-2; i++ )
         {
-            t += times[i];
+            t = times[i];
 			if( Time.time < t )
             {
-				this.camera.backgroundColor = Color.Lerp(colors[i], colors[i+1], Time.time / times[i]);
+                //float lerpval = Time.time / t;
+                float lerpval = (Time.time - times[i-1]) / ( t - times[i-1]);
+                Debug.Log(i + "lerp, " + lerpval); 
+                this.camera.backgroundColor = Color.Lerp(colors[i], colors[i + 1], lerpval);
 				break;
 			}
 		}

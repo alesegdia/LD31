@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour {
 		// handle horizontal and vertical input forces
         float hor, ver;
         hor = ver = 0;
-		if( Input.GetKey(KeyCode.Space) )  ver = 1;
-		if( Input.GetKey(KeyCode.A) ) hor = -1;
-		if( Input.GetKey(KeyCode.D) ) hor = 1;
+		if( Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) )  ver = 1;
+		if( Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ) hor = -1;
+		if( Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ) hor = 1;
         controlledGameobject.rigidbody2D.AddForce(new Vector2(hor * speed.y, ver * speed.y));
 
 		// cap
