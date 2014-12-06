@@ -50,7 +50,7 @@ public class Player : MonoBehaviour {
 	void OnGUI()
     {
         for (int i = 0; i < health.current; i++ )
-            GUI.DrawTexture(new Rect((heart.width + 2) * i, 0, heart.width, heart.height), heart);
+            GUI.DrawTexture(new Rect((heart.width + 2) * i + 10, 10, heart.width, heart.height), heart);
     }
 
 }
