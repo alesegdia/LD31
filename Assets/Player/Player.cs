@@ -40,8 +40,11 @@ public class Player : MonoBehaviour {
 			switch( pwup.type )
             {
 				case Powerup.Type.HEALTH:
-                    health.current++;
-                    Destroy(other.gameObject);
+					if( health.current + 1 <= health.total )
+                    {
+						health.current++;
+						Destroy(other.gameObject);
+                    }
 					break;
             }
         }
