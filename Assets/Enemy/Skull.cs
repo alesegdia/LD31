@@ -20,10 +20,5 @@ public class Skull : MonoBehaviour {
         Vector2 new_velocity = Vector2.Lerp(player_pos.normalized, skull_velocity.normalized, alpha) * attraction;
 		this.rigidbody2D.velocity = - this.transform.position + player.transform.position;
 	}
-	void OnTrigger2DStay(Collider2D other)
-    {
-        Debug.Log("HEY!!");
-    }
-
 
 }

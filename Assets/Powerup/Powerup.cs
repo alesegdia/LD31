@@ -10,6 +10,7 @@ public class Powerup : MonoBehaviour {
 
     public Type type;
     public float quantity;
+    public float velocity = -2.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,8 @@ public class Powerup : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		Vector2 newvel = this.rigidbody2D.velocity;
+		newvel.x = velocity;
+        this.rigidbody2D.velocity = newvel;
 	}
 }

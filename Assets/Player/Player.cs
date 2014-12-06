@@ -11,25 +11,40 @@ public class Player : MonoBehaviour {
 		public int total;
 	};
 	public Health health;
+    public float painTime = 1;
+    float lastPain = 0;
+    public GameObject graphics;
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		Color c = graphics.renderer.material.color;
+        if (lastPain + painTime > Time.time) c.a = 0.3f;
+        else c.a = 1.0f;
+        graphics.renderer.material.color = c;
 	}
 
-	void OnTrigger2DStay(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("HEY!!");
-    }
-
-	void OnCollision2DEnter(Collider2D other)
-    {
-        Debug.Log("HEY!!");
+		if( lastPain + painTime < Time.time && other.gameObject.layer == LayerMask.NameToLayer("Enemy") )
+        {
+            lastPain = Time.time;
+            health.current--;
+        }
+		else if( other.gameObject.layer == LayerMask.NameToLayer("Powerup") )
+        {
+            Powerup pwup = other.gameObject.GetComponent<Powerup>();
+			switch( pwup.type )
+            {
+				case Powerup.Type.HEALTH:
+                    health.current++;
+                    Destroy(other.gameObject);
+					break;
+            }
+        }
     }
 
 	void OnGUI()

@@ -35,11 +35,4 @@ public class PlayerController : MonoBehaviour {
         animator.SetFloat("Vertical Speed", controlledGameobject.rigidbody2D.velocity.y);
 
 	}
-	void OnTrigger2DStay(Collider2D other)
-    {
-        Debug.Log("HEY!!");
-    }
-
-
-
 }
