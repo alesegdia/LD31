@@ -78,6 +78,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400008}
+  - 114: {fileID: 11400022}
   m_Layer: 8
   m_Name: Weapons
   m_TagString: Untagged
@@ -266,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 5, y: 20}
-  maxSpeed: {x: 2, y: 4}
+  maxSpeed: {x: 4, y: 4}
   controlledGameobject: {fileID: 100006}
   graphicGameobject: {fileID: 100004}
 --- !u!114 &11400002
@@ -421,6 +422,17 @@ MonoBehaviour:
   alpha: 5
   amplitude: .5
   offset: 0
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b1b9e72676a344190c78a3abfbc234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
