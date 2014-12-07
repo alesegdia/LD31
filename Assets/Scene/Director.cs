@@ -41,11 +41,17 @@ public class Director : MonoBehaviour {
     float nextLevelUp = 0.0f;
     float nextSpawn = 0.0f;
 
-    int level = 1;
+    public float finalSpawnRelation = 4.0f;
+    float divSpawnFactor;
+
+    bool tick = false;
+    public int level = 0;
     float now;
 
 	// Use this for initialization
 	void Start () {
+        divSpawnFactor = ((float)maxLevel) * finalSpawnRelation; 
+        //divSpawnFactor = finalSpawnRelation; 
         mobSpawner = GameObject.FindGameObjectWithTag("MobSpawner").GetComponent<MobSpawner>();
         audio.Play();
 		now = Time.time;
@@ -54,22 +60,31 @@ public class Director : MonoBehaviour {
         this.renderer.enabled = false;
         storyEnabled = false;
         skullEnabled = teyeEnabled = temurEnabled = false;
+        nextLevelUp = Time.time + levelUpInterval;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if( level < maxLevel && Time.time > nextLevelUp )
-        {
-            nextLevelUp += levelUpInterval;
-        }
-
 		if( level > skullStart ) skullEnabled = true;
 		if( level > temurStart ) temurEnabled = true;
 		if( level > teyeStart ) teyeEnabled = true;
 
         if (Time.time > killingStart)
         {
+			if( level < maxLevel && Time.time > nextLevelUp )
+			{
+				nextLevelUp = Time.time + levelUpInterval;
+				level++;
+				Debug.Log("level: " + level);
+			}
+			else if( level == 10 && !tick )
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Weapons>().enableHyper = true;
+				tick = true;
+			}
+
+
 			if( Time.time > nextSpawn )
             {
 				SpawnSomething();
@@ -87,23 +102,56 @@ public class Director : MonoBehaviour {
 
 	void SpawnTeye()
     {
-        Debug.Log("TEYE!");
-        mobSpawner.SpawnTeye();
-        nextSpawn = Time.time + teyeCooldown * (1 - (level / 200));
+        int qtt = 1;
+		if( level > 8 ) qtt = 2;
+		else if( level > 4 ) qtt = 1;
+
+		while( qtt > 0 )
+        {
+            mobSpawner.SpawnTeye();
+            qtt--;
+        }
+
+        float cooldown = teyeCooldown * (1.0f - (level / divSpawnFactor));
+        nextSpawn = Time.time + cooldown;
+        Debug.Log("TEYE! " + cooldown);
     }
 
 	void SpawnSkull()
     {
-        Debug.Log("SKULL!");
-        mobSpawner.SpawnSkull();
-        nextSpawn = Time.time + skullCooldown * (1 - (level / 200));
+        int qtt = 1;
+		if( level > 8 ) qtt = 3;
+		else if( level > 4 ) qtt = 2;
+		else if( level > 2 ) qtt = 1;
+
+		while( qtt > 0 )
+        {
+            mobSpawner.SpawnSkull();
+            qtt--;
+        }
+
+        float cooldown = skullCooldown * (1.0f - (level / divSpawnFactor));
+        nextSpawn = Time.time + cooldown;
+        Debug.Log("SKULL! " + cooldown);
     }
 
 	void SpawnTemur()
     {
-        Debug.Log("TEMUR!");
-        mobSpawner.SpawnTemur();
-        nextSpawn = Time.time + temurCooldown * (1 - (level / 200));
+        int qtt = 1;
+		if( level > 8 ) qtt = 8;
+		else if( level > 6 ) qtt = 4;
+		else if( level > 4 ) qtt = 2;
+		else if( level > 2 ) qtt = 1;
+
+		while( qtt > 0 )
+        {
+            mobSpawner.SpawnTemur();
+            qtt--;
+        }
+
+        float cooldown = temurCooldown * (1.0f - (level / divSpawnFactor));
+        nextSpawn = Time.time + cooldown;
+        Debug.Log("TEMUR! " + cooldown);
     }
 
 	void FixedUpdate()

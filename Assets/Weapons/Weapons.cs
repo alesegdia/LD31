@@ -12,11 +12,25 @@ public class Weapons : MonoBehaviour {
     public float FireCooldown = 0.2f;
     public float SnowCooldown = 0.5f;
     public float VenoCooldown = 0.05f;
+    public float FireMaxGauge = 10.0f;
+    public float SnowMaxGauge = 10.0f;
+    public float VenoMaxGauge = 10.0f;
+    public float FireCurrentGauge = 10.0f;
+    public float SnowCurrentGauge = 10.0f;
+    public float VenoCurrentGauge = 10.0f;
+    public float FireGaugeConsumption = 0.01f;
+    public float VenoGaugeConsumption = 0.05f;
+    public float SnowGaugeConsumption = 1.0f;
+    public float FireGaugeRecover = 0.0001f;
+    public float SnowGaugeRecover = 0.01f;
+    public float VenoGaugeRecover = 0.0005f;
+
     float fireNextShot = 0.0f;
     float snowNextShot = 0.0f;
     float venoNextShot = 0.0f;
     string selected = "fireball";
     float cooldown = 0.2f;
+    public bool enableHyper = true;
 
 	void SetOption(string option, bool enabled = true)
     {
@@ -58,6 +72,16 @@ public class Weapons : MonoBehaviour {
         return false;
     }
 	
+	void FixedUpdate()
+    {
+        if (FireCurrentGauge < FireMaxGauge) FireCurrentGauge += FireGaugeRecover;
+        if (SnowCurrentGauge < SnowMaxGauge) SnowCurrentGauge += SnowGaugeRecover;
+        if (VenoCurrentGauge < VenoMaxGauge) VenoCurrentGauge += VenoGaugeRecover;
+        if (FireCurrentGauge < 0) FireCurrentGauge = 0.0f;
+        if (SnowCurrentGauge < 0) SnowCurrentGauge = 0.0f;
+        if (VenoCurrentGauge < 0) VenoCurrentGauge = 0.0f;
+    }
+
 	// Update is called once per frame
 	void Update () {
 		if( Input.GetKeyDown(KeyCode.Alpha1) )
@@ -72,7 +96,7 @@ public class Weapons : MonoBehaviour {
         {
 			SetOnlyVenoball();
         }
-		if( Input.GetKeyDown(KeyCode.Alpha4) )
+		if( Input.GetKeyDown(KeyCode.Alpha4) && enableHyper )
         {
 			SetAllOptions( true, true, true );
 		}
@@ -87,8 +111,9 @@ public class Weapons : MonoBehaviour {
 
 	void TryShootFire()
     {
-		if( IsEnabledOption("fireball") && Time.time > fireNextShot )
+		if( IsEnabledOption("fireball") && Time.time > fireNextShot && FireCurrentGauge > FireGaugeConsumption )
         {
+            FireCurrentGauge -= FireGaugeConsumption;
             fireNextShot = Time.time + FireCooldown;
             InstanceBullet(fireproj, fireball.transform.position);
         }
@@ -96,40 +121,21 @@ public class Weapons : MonoBehaviour {
 
 	void TryShootSnow()
     {
-		if( IsEnabledOption("snowball") && Time.time > snowNextShot )
+		if( IsEnabledOption("snowball") && Time.time > snowNextShot && SnowCurrentGauge > SnowGaugeConsumption )
         {
+            SnowCurrentGauge -= SnowGaugeConsumption;
             snowNextShot = Time.time + SnowCooldown;
             InstanceBullet(snowproj, snowball.transform.position);
         }
     }
 	void TryShootVeno()
     {
-		if( IsEnabledOption("venoball") && Time.time > venoNextShot )
+		if( IsEnabledOption("venoball") && Time.time > venoNextShot && VenoCurrentGauge > VenoGaugeConsumption )
         {
+            VenoCurrentGauge -= VenoGaugeConsumption;
             venoNextShot = Time.time + VenoCooldown;
             InstanceBullet(venoproj, venoball.transform.position);
         }
-    }
-
-
-	void Shot()
-    {
-		GameObject proj;
-        Vector2 from;
-		/*
-        if (IsEnabledOption("fireball"))
-        {
-            fireballNextShot = Time.time + cooldown;
-        }
-        if (IsEnabledOption("snowball"))
-        {
-            InstanceBullet(snowproj, snowball.transform.position);
-        }
-        if( IsEnabledOption("venoball") )
-        {
-            InstanceBullet(venoproj, venoball.transform.position);
-        }
-         */
     }
 
 	void InstanceBullet(GameObject proj, Vector2 from )

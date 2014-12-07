@@ -120,6 +120,7 @@ MonoBehaviour:
   alpha: 1
   amplitude: 1
   offset: 0
+  angleOffset: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,6 +136,7 @@ MonoBehaviour:
   alpha: 2
   amplitude: 1
   offset: 5
+  angleOffset: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08903eec8d6dc914185f0aa62ab7c018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 20
   pointsOnDying: 50
 --- !u!114 &11400006
 MonoBehaviour:
