@@ -25,6 +25,7 @@ public class Player : MonoBehaviour {
         if (lastPain + painTime > Time.time) c.a = 0.3f;
         else c.a = 1.0f;
         graphics.renderer.material.color = c;
+
 	}
 
     void OnTriggerStay2D(Collider2D other)

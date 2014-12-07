@@ -17,8 +17,8 @@ TagManager:
   User Layer 10: Ground
   User Layer 11: Powerup
   User Layer 12: EnemyBullet
-  User Layer 13: 
-  User Layer 14: 
+  User Layer 13: PlayerBullet
+  User Layer 14: EnemyPhysic
   User Layer 15: 
   User Layer 16: 
   User Layer 17: 

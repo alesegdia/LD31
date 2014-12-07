@@ -12,8 +12,8 @@ GameObject:
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
-  - 50: {fileID: 5000000}
   - 58: {fileID: 5800000}
+  - 50: {fileID: 5000000}
   m_Layer: 9
   m_Name: EnemyTemur
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.01601958, y: -.699131668, z: 0}
+  m_LocalPosition: {x: 15.8605118, y: 2.4665041, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

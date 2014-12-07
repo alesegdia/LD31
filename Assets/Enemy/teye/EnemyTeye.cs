@@ -51,6 +51,8 @@ public class EnemyTeye : MonoBehaviour {
 
 	void Shot()
     {
-		Instantiate(projectile, this.transform.position, Quaternion.identity);
+		GameObject go = Instantiate(projectile, this.transform.position, Quaternion.identity) as GameObject;
+        DestructionTimer dt = go.AddComponent<DestructionTimer>();
+        dt.timeToDestruction = 4.0f;
     }
 }
