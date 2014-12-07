@@ -7,6 +7,8 @@ public class Player : MonoBehaviour {
     public Texture noheart;
     public Font pointsFont;
 
+    static int hiscore = 0;
+
 	[System.Serializable]
 	public struct Health {
 		public int current;
@@ -16,7 +18,7 @@ public class Player : MonoBehaviour {
     public float painTime = 1;
     float lastPain = 0;
     public GameObject graphics;
-    public int points = 0;
+    public int currentScore = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -28,13 +30,16 @@ public class Player : MonoBehaviour {
         if (lastPain + painTime > Time.time) c.a = 0.3f;
         else c.a = 1.0f;
         graphics.renderer.material.color = c;
-        Debug.Log("POINTS: " + points);
 
 	}
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (health.current < 0) Application.Quit();
+        if (health.current <= 0)
+        {
+            if (currentScore > hiscore) hiscore = currentScore;
+            Application.LoadLevel(Application.loadedLevel);
+        }
 		if( lastPain + painTime < Time.time && other.gameObject.layer == LayerMask.NameToLayer("Enemy") )
         {
             lastPain = Time.time;
@@ -49,11 +54,11 @@ public class Player : MonoBehaviour {
 					if( health.current + 1 <= health.total )
                     {
 						health.current++;
-                        points += 5;
+                        currentScore += 5;
                     }
 					else
 					{
-                        points += 10;
+                        currentScore += 10;
 					}
 					
 					Destroy(other.gameObject);
@@ -85,7 +90,8 @@ public class Player : MonoBehaviour {
         GUIStyle mystyle = new GUIStyle();
         mystyle.font = pointsFont;
         mystyle.normal.textColor = Color.white;
-		GUI.Label(new Rect(10, 30, 200, 200), "POINTS: " + points.ToString(), mystyle);
+		GUI.Label(new Rect(10, 30, 200, 200), "SCORE " + currentScore.ToString(), mystyle);
+		GUI.Label(new Rect(10, 50, 200, 200), "HI-SCORE " + hiscore.ToString(), mystyle);
     }
 
 }

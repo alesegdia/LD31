@@ -9,8 +9,13 @@ public class Weapons : MonoBehaviour {
     public GameObject fireproj;
     public GameObject snowproj;
     public GameObject venoproj;
+    public float FireCooldown = 0.2f;
+    public float SnowCooldown = 0.5f;
+    public float VenoCooldown = 0.05f;
+    float fireNextShot = 0.0f;
+    float snowNextShot = 0.0f;
+    float venoNextShot = 0.0f;
     string selected = "fireball";
-    float nextShot;
     float cooldown = 0.2f;
 
 	void SetOption(string option, bool enabled = true)
@@ -72,20 +77,49 @@ public class Weapons : MonoBehaviour {
 			SetAllOptions( true, true, true );
 		}
 
-        if (Time.time > nextShot && Input.GetKey(KeyCode.Space))
+        if ( Input.GetKey(KeyCode.Space))
         {
-            nextShot = Time.time + cooldown;
-            Shot();
+            TryShootFire();
+            TryShootSnow();
+            TryShootVeno();
         }
 	}
+
+	void TryShootFire()
+    {
+		if( IsEnabledOption("fireball") && Time.time > fireNextShot )
+        {
+            fireNextShot = Time.time + FireCooldown;
+            InstanceBullet(fireproj, fireball.transform.position);
+        }
+    }
+
+	void TryShootSnow()
+    {
+		if( IsEnabledOption("snowball") && Time.time > snowNextShot )
+        {
+            snowNextShot = Time.time + SnowCooldown;
+            InstanceBullet(snowproj, snowball.transform.position);
+        }
+    }
+	void TryShootVeno()
+    {
+		if( IsEnabledOption("venoball") && Time.time > venoNextShot )
+        {
+            venoNextShot = Time.time + VenoCooldown;
+            InstanceBullet(venoproj, venoball.transform.position);
+        }
+    }
+
 
 	void Shot()
     {
 		GameObject proj;
         Vector2 from;
+		/*
         if (IsEnabledOption("fireball"))
         {
-            InstanceBullet(fireproj, fireball.transform.position);
+            fireballNextShot = Time.time + cooldown;
         }
         if (IsEnabledOption("snowball"))
         {
@@ -95,6 +129,7 @@ public class Weapons : MonoBehaviour {
         {
             InstanceBullet(venoproj, venoball.transform.position);
         }
+         */
     }
 
 	void InstanceBullet(GameObject proj, Vector2 from )

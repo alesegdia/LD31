@@ -16,7 +16,7 @@ public class Health : MonoBehaviour {
 	void Update () {
 		if( current < 0 )
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().points += pointsOnDying;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().currentScore += pointsOnDying;
             Destroy(this.transform.parent.gameObject);
         }
 	}
@@ -25,7 +25,7 @@ public class Health : MonoBehaviour {
     {
 		if( other.gameObject.layer == LayerMask.NameToLayer("PlayerBullet") )
         {
-            current--;
+            current -= other.gameObject.GetComponent<Bullet>().damage;
             Destroy(other.gameObject);
         }
     }

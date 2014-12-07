@@ -25,7 +25,6 @@ public class EnemyTeye : MonoBehaviour {
 
 		if( Time.time < whenIsShown )
         {
-            Debug.Log("showin");
             Color c = renderer.material.color;
             c.a = Mathf.Lerp(1, 0, (whenIsShown - Time.time) / 5);
             renderer.material.color = c;
