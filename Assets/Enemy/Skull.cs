@@ -6,10 +6,10 @@ public class Skull : MonoBehaviour {
     public GameObject player;
     public float attraction = 1.0f;
     public float alpha = 0.5f;
+    public bool randomize = false;
 
     // Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame

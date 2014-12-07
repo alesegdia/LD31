@@ -14,7 +14,6 @@ public class Health : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(current);
 		if( current < 0 )
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().points += pointsOnDying;
@@ -24,10 +23,8 @@ public class Health : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("ONTRIGGER!");
 		if( other.gameObject.layer == LayerMask.NameToLayer("PlayerBullet") )
         {
-			Debug.Log("YEAH!!");
             current--;
             Destroy(other.gameObject);
         }

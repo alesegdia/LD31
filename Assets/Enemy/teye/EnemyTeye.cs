@@ -11,14 +11,25 @@ public class EnemyTeye : MonoBehaviour {
     public float timeBetweenTriggers = 3.0f;
     private float nextTrigger;
     private List<float> shotQueue = new List<float>();
+    bool isShowing = true;
+    float whenIsShown = 0;
 
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
+        whenIsShown = Time.time + 5;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if( Time.time < whenIsShown )
+        {
+            Debug.Log("showin");
+            Color c = renderer.material.color;
+            c.a = Mathf.Lerp(1, 0, (whenIsShown - Time.time) / 5);
+            renderer.material.color = c;
+        }
 
 		// trigger or not to trigger?
         if (nextTrigger < Time.time)
