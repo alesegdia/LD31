@@ -48,10 +48,11 @@ public class Player : MonoBehaviour {
 					if( health.current + 1 <= health.total )
                     {
 						health.current++;
+                        points += 5;
                     }
 					else
 					{
-                        points += 40;
+                        points += 10;
 					}
 					
 					Destroy(other.gameObject);
