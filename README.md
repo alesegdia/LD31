@@ -1,1 +1,1 @@
-# BLONDMARE (LD31)
+# BLONDMARE for Ludum Dare #31
