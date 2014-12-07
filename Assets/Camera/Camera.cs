@@ -26,7 +26,7 @@ public class Camera : MonoBehaviour {
             {
                 //float lerpval = Time.time / t;
                 float lerpval = (Time.time - times[i-1]) / ( t - times[i-1]);
-                Debug.Log(i + "lerp, " + lerpval); 
+                //Debug.Log(i + "lerp, " + lerpval); 
                 this.camera.backgroundColor = Color.Lerp(colors[i], colors[i + 1], lerpval);
 				break;
 			}

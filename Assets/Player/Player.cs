@@ -48,6 +48,15 @@ public class Player : MonoBehaviour {
 					break;
             }
         }
+		else if( other.gameObject.layer == LayerMask.NameToLayer("EnemyBullet") )
+        {
+            if (Time.time > lastPain + painTime)
+            {
+                Destroy(other.gameObject);
+                lastPain = Time.time;
+                health.current--;
+            }
+        }
     }
 
 	void OnGUI()
