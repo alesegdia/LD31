@@ -13,13 +13,14 @@ public class Health : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Debug.Log(current);
 		if( current < 0 )
         {
-            Destroy(this.gameObject);
+            Destroy(this.transform.parent.gameObject);
         }
 	}
 
-	void OnTriggerStay2D(Collision2D other)
+	void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("ONTRIGGER!");
 		if( other.gameObject.layer == LayerMask.NameToLayer("PlayerBullet") )

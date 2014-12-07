@@ -54,10 +54,23 @@ public class Weapons : MonoBehaviour {
 	void Shot()
     {
 		GameObject proj;
-        if( selected == "fireball" ) proj = fireproj;
-        else if( selected == "snowball" ) proj = snowproj;
-        else proj = venoproj;
-		GameObject go = Instantiate(proj, this.transform.position, Quaternion.identity) as GameObject;
+        Vector2 from;
+        if (selected == "fireball")
+        {
+            proj = fireproj;
+            from = fireball.transform.position;
+        }
+        else if (selected == "snowball")
+        {
+            proj = snowproj;
+            from = snowball.transform.position;
+        }
+        else
+        {
+            proj = venoproj;
+            from = venoball.transform.position;
+        }
+		GameObject go = Instantiate(proj, from, Quaternion.identity) as GameObject;
         DestructionTimer dt = go.AddComponent<DestructionTimer>();
         dt.timeToDestruction = 4.0f;
     }
