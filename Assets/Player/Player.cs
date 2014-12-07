@@ -5,6 +5,7 @@ public class Player : MonoBehaviour {
 
     public Texture heart;
     public Texture noheart;
+    public Font pointsFont;
 
 	[System.Serializable]
 	public struct Health {
@@ -81,7 +82,10 @@ public class Player : MonoBehaviour {
             GUI.DrawTexture(new Rect((noheart.width + 2) * i + 10, 10, noheart.width, noheart.height), noheart);
         }
 
-            GUI.Label(new Rect(10, 30, 200, 200), "POINTS: " + points.ToString());
+        GUIStyle mystyle = new GUIStyle();
+        mystyle.font = pointsFont;
+        mystyle.normal.textColor = Color.white;
+		GUI.Label(new Rect(10, 30, 200, 200), "POINTS: " + points.ToString(), mystyle);
     }
 
 }

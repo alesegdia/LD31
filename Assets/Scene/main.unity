@@ -783,6 +783,11 @@ Prefab:
       propertyPath: painTime
       value: .300000012
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 797415b78da64aa4780e954af49b1f3c, type: 2}
+      propertyPath: pointsFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 02663659d2143b2418ef7975265e0b0b,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 797415b78da64aa4780e954af49b1f3c, type: 2}
   m_RootGameObject: {fileID: 1297393266}
@@ -2678,6 +2683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heart: {fileID: 2800000, guid: 7ac6211f9e136fb4996d45fd7a151bc0, type: 3}
   noheart: {fileID: 2800000, guid: ba3a2ac22a5dca442b9759c34a92796b, type: 3}
+  pointsFont: {fileID: 12800000, guid: 02663659d2143b2418ef7975265e0b0b, type: 3}
   health:
     current: 10
     total: 10
