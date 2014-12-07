@@ -26,7 +26,9 @@ public class PowerupSpawner : MonoBehaviour {
 			int selected = Random.Range(0, powerups.Length-1);
             Vector2 pos = this.transform.position;
             pos.y += Random.RandomRange(0.0f, maxYoffset);
-			Instantiate(powerups[selected], pos, Quaternion.identity);
+			GameObject go = Instantiate(powerups[selected], pos, Quaternion.identity) as GameObject;
+            DestructionTimer dt = go.AddComponent<DestructionTimer>();
+            dt.timeToDestruction = 20.0f;
         }
 	}
 }

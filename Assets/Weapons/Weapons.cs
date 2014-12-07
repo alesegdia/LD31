@@ -13,36 +13,64 @@ public class Weapons : MonoBehaviour {
     float nextShot;
     float cooldown = 0.2f;
 
+	void SetOption(string option, bool enabled = true)
+    {
+        if (option == "fireball") fireball.GetComponent<SpriteRenderer>().enabled = enabled;
+        else if (option == "snowball") snowball.GetComponent<SpriteRenderer>().enabled = enabled;
+        else venoball.GetComponent<SpriteRenderer>().enabled = enabled;
+    }
+
+	void SetAllOptions( bool enable_fire, bool enable_snow, bool enable_veno)
+    {
+        SetOption("fireball", enable_fire);
+        SetOption("snowball", enable_snow);
+        SetOption("venoball", enable_veno);
+    }
+
+	void SetOnlyFireball() { SetAllOptions(true, false, false); }
+	void SetOnlySnowball() { SetAllOptions(false, true, false); }
+	void SetOnlyVenoball() { SetAllOptions(false, false, true); }
+
 	// Use this for initialization
 	void Start () {
         fireball = transform.Find("WpFireball").gameObject;
         snowball = transform.Find("WpSnowball").gameObject;
         venoball = transform.Find("WpVenoball").gameObject;
+
+		selected = "fireball";
+		fireball.GetComponent<SpriteRenderer>().enabled = true;
+		snowball.GetComponent<SpriteRenderer>().enabled = false;
+		venoball.GetComponent<SpriteRenderer>().enabled = false;
+		selected = "fireball";
+
 	}
+
+	bool IsEnabledOption (string option)
+    {
+        if (option == "fireball") return fireball.GetComponent<SpriteRenderer>().enabled;
+        if (option == "snowball") return snowball.GetComponent<SpriteRenderer>().enabled;
+        if (option == "venoball") return venoball.GetComponent<SpriteRenderer>().enabled;
+        return false;
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		if( Input.GetKeyDown(KeyCode.Alpha1) )
         {
-            fireball.SetActive(true);
-            snowball.SetActive(false);
-            venoball.SetActive(false);
-            selected = "fireball";
+            SetOnlyFireball();
         }
 		if( Input.GetKeyDown(KeyCode.Alpha2) )
         {
-            fireball.SetActive(false);
-            snowball.SetActive(true);
-            venoball.SetActive(false);
-            selected = "snowball";
+            SetOnlySnowball();
         }
 		if( Input.GetKeyDown(KeyCode.Alpha3) )
         {
-            fireball.SetActive(false);
-            snowball.SetActive(false);
-            venoball.SetActive(true);
-            selected = "venoball";
+			SetOnlyVenoball();
         }
+		if( Input.GetKeyDown(KeyCode.Alpha4) )
+        {
+			SetAllOptions( true, true, true );
+		}
 
         if (Time.time > nextShot && Input.GetKey(KeyCode.Space))
         {
@@ -55,21 +83,22 @@ public class Weapons : MonoBehaviour {
     {
 		GameObject proj;
         Vector2 from;
-        if (selected == "fireball")
+        if (IsEnabledOption("fireball"))
         {
-            proj = fireproj;
-            from = fireball.transform.position;
+            InstanceBullet(fireproj, fireball.transform.position);
         }
-        else if (selected == "snowball")
+        if (IsEnabledOption("snowball"))
         {
-            proj = snowproj;
-            from = snowball.transform.position;
+            InstanceBullet(snowproj, snowball.transform.position);
         }
-        else
+        if( IsEnabledOption("venoball") )
         {
-            proj = venoproj;
-            from = venoball.transform.position;
+            InstanceBullet(venoproj, venoball.transform.position);
         }
+    }
+
+	void InstanceBullet(GameObject proj, Vector2 from )
+    {
 		GameObject go = Instantiate(proj, from, Quaternion.identity) as GameObject;
         DestructionTimer dt = go.AddComponent<DestructionTimer>();
         dt.timeToDestruction = 4.0f;

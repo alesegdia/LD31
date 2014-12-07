@@ -19,6 +19,8 @@ public class Skull : MonoBehaviour {
 
         Vector2 new_velocity = Vector2.Lerp(player_pos.normalized, skull_velocity.normalized, alpha) * attraction;
 		this.rigidbody2D.velocity = - this.transform.position + player.transform.position;
+
+        transform.Find("Physic").rigidbody2D.MovePosition(this.transform.position);
 	}
 
 }

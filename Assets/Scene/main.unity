@@ -1567,6 +1567,10 @@ Prefab:
       propertyPath: projectile
       value: 
       objectReference: {fileID: 420294211}
+    - target: {fileID: 100000, guid: 57d73b173cd22324d877a8f4c3c153ba, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57d73b173cd22324d877a8f4c3c153ba, type: 2}
   m_RootGameObject: {fileID: 15746096}
@@ -1699,6 +1703,10 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1297393266}
+    - target: {fileID: 100000, guid: f026b7684a700a946a266b8330f3cad2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f026b7684a700a946a266b8330f3cad2, type: 2}
   m_RootGameObject: {fileID: 1261466664}
@@ -4217,6 +4225,10 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1297393266}
+    - target: {fileID: 100000, guid: f026b7684a700a946a266b8330f3cad2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f026b7684a700a946a266b8330f3cad2, type: 2}
   m_RootGameObject: {fileID: 1251766465}
