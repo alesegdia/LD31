@@ -5,6 +5,7 @@ public class Health : MonoBehaviour {
 
     public int maxHealth = 10;
     int current;
+    public int pointsOnDying = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,7 @@ public class Health : MonoBehaviour {
         Debug.Log(current);
 		if( current < 0 )
         {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().points += pointsOnDying;
             Destroy(this.transform.parent.gameObject);
         }
 	}

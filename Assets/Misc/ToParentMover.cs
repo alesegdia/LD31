@@ -10,9 +10,6 @@ public class ToParentMover : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("---");
         this.rigidbody2D.MovePosition(this.transform.parent.position);
-        Debug.Log(this.transform.position);
-        Debug.Log(this.transform.parent.position);
 	}
 }

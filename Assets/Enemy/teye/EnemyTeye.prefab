@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  pointsOnDying: 50
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -12,10 +12,8 @@ public class DestructionLessThan : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-            Debug.Log("pos: " + this.transform.position.x);
 		if( this.transform.position.x < howMuch )
         {
-            Debug.Log("LESS THAN MOFO!");
             Destroy(this);
         }
 	}

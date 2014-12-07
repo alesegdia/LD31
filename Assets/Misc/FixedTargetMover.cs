@@ -19,7 +19,6 @@ public class FixedTargetMover : MonoBehaviour {
             first = false;
             fixed_velocity = (target.transform.position - this.transform.position).normalized * speed;
         }
-        Debug.Log(fixed_velocity);
         this.rigidbody2D.velocity = fixed_velocity;
 	
 	}
