@@ -39,6 +39,14 @@ public class Weapons : MonoBehaviour {
         else venoball.GetComponent<SpriteRenderer>().enabled = enabled;
     }
 
+	bool GetOption(string option)
+    {
+        if (option == "fireball") return fireball.GetComponent<SpriteRenderer>().enabled;
+        else if (option == "snowball") return snowball.GetComponent<SpriteRenderer>().enabled;
+        else if (option == "venoball") return venoball.GetComponent<SpriteRenderer>().enabled;
+        return false;
+    }
+
 	void SetAllOptions( bool enable_fire, bool enable_snow, bool enable_veno)
     {
         SetOption("fireball", enable_fire);
@@ -84,19 +92,24 @@ public class Weapons : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if( Input.GetKeyDown(KeyCode.Alpha1) )
+        bool fire, snow, veno;
+        fire = snow = veno = false;
+		if( Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.H) )
         {
-            SetOnlyFireball();
+            SetOption("fireball", !GetOption("fireball"));
+            //SetOnlyFireball();
         }
-		if( Input.GetKeyDown(KeyCode.Alpha2) )
+		if( Input.GetKeyDown(KeyCode.Alpha2)  || Input.GetKeyDown(KeyCode.J) )
         {
-            SetOnlySnowball();
+            SetOption("snowball", !GetOption("snowball"));
+            //SetOnlySnowball();
         }
-		if( Input.GetKeyDown(KeyCode.Alpha3) )
+		if( Input.GetKeyDown(KeyCode.Alpha3)  || Input.GetKeyDown(KeyCode.K) )
         {
-			SetOnlyVenoball();
+            SetOption("venoball", !GetOption("venoball"));
+			//SetOnlyVenoball();
         }
-		if( Input.GetKeyDown(KeyCode.Alpha4) && enableHyper )
+		if( (Input.GetKeyDown(KeyCode.Alpha4)  || Input.GetKeyDown(KeyCode.L)) && enableHyper )
         {
 			SetAllOptions( true, true, true );
 		}

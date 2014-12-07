@@ -47,9 +47,25 @@ public class Director : MonoBehaviour {
     bool tick = false;
     public int level = 0;
     float now;
+    private GUIStyle mystyle;
+    private GUIStyle mystyle2;
 
 	// Use this for initialization
 	void Start () {
+		mystyle = new GUIStyle();
+		mystyle.font = storyFont;
+		Color c = Color.white;
+		c.a = storyAlpha;
+		mystyle.normal.textColor = c;
+		mystyle.alignment = TextAnchor.MiddleCenter;
+
+		mystyle2 = new GUIStyle();
+		mystyle2.font = storyFont;
+		mystyle2.normal.textColor = Color.green;
+		mystyle2.alignment = TextAnchor.MiddleCenter;
+
+
+
         divSpawnFactor = ((float)maxLevel) * finalSpawnRelation; 
         //divSpawnFactor = finalSpawnRelation; 
         mobSpawner = GameObject.FindGameObjectWithTag("MobSpawner").GetComponent<MobSpawner>();
@@ -189,14 +205,10 @@ public class Director : MonoBehaviour {
 
 		if( storyEnabled )
         {
-			GUIStyle mystyle = new GUIStyle();
-			mystyle.font = storyFont;
-			Color c = Color.white;
-            c.a = storyAlpha;
-			mystyle.normal.textColor = c;
-			mystyle.alignment = TextAnchor.MiddleCenter;
 			GUI.Label(new Rect(0, 0, Screen.width,Screen.height-100), "every night, every dream\ni am tough,\nbut never completed\nuntil the death has come", mystyle);
         }
+
+        GUI.Label(new Rect(Screen.width/2, 0, 2*Screen.width/3, Screen.height/4), "instructions:\narrows/wasd: movement\n1-4/h-l: option enable/disable\nspace: shoot", mystyle2);
     }
 
 	void CenterText(string text)
