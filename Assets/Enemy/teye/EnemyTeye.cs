@@ -25,9 +25,9 @@ public class EnemyTeye : MonoBehaviour {
 
 		if( Time.time < whenIsShown )
         {
-            Color c = renderer.material.color;
+            Color c = GetComponent<Renderer>().material.color;
             c.a = Mathf.Lerp(1, 0, (whenIsShown - Time.time) / 5);
-            renderer.material.color = c;
+            GetComponent<Renderer>().material.color = c;
         }
 
 		// trigger or not to trigger?

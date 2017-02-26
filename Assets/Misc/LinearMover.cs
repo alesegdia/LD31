@@ -14,12 +14,12 @@ public class LinearMover : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector2 vel = this.rigidbody2D.velocity;
+        Vector2 vel = this.GetComponent<Rigidbody2D>().velocity;
         switch (type)
         {
             case Type.X: vel.x = speed; break;
             case Type.Y: vel.y = speed; break;
         }
-        this.rigidbody2D.velocity = vel;	
+        this.GetComponent<Rigidbody2D>().velocity = vel;	
 	}
 }

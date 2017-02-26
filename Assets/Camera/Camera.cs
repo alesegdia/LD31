@@ -13,7 +13,7 @@ public class Camera : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        initialColor = this.camera.backgroundColor;
+        initialColor = this.GetComponent<UnityEngine.Camera>().backgroundColor;
 	}
 	
 	// Update is called once per frame
@@ -27,7 +27,7 @@ public class Camera : MonoBehaviour {
                 //float lerpval = Time.time / t;
                 float lerpval = (Time.time - times[i-1]) / ( t - times[i-1]);
                 //Debug.Log(i + "lerp, " + lerpval); 
-                this.camera.backgroundColor = Color.Lerp(colors[i], colors[i + 1], lerpval);
+                this.GetComponent<UnityEngine.Camera>().backgroundColor = Color.Lerp(colors[i], colors[i + 1], lerpval);
 				break;
 			}
 		}

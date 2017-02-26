@@ -16,7 +16,7 @@ public class Scroll : MonoBehaviour {
         {
 			for( int y = 0; y < times.y; y++ )
             {
-				Vector3 off = new Vector3( scrolledSprite.renderer.bounds.size.x * x, scrolledSprite.renderer.bounds.size.y * y, 0 );
+				Vector3 off = new Vector3( scrolledSprite.GetComponent<Renderer>().bounds.size.x * x, scrolledSprite.GetComponent<Renderer>().bounds.size.y * y, 0 );
                 instances.Add(((GameObject)Instantiate(scrolledSprite, this.transform.position + off, Quaternion.identity)));
             }
         }
@@ -27,7 +27,7 @@ public class Scroll : MonoBehaviour {
 		foreach( GameObject inst in instances )
         {
 			offset += speed * Time.deltaTime;
-			inst.renderer.material.SetTextureOffset("_MainTex", offset);
+			inst.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", offset);
         }
 	}
 }

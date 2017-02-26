@@ -34,10 +34,10 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Color c = graphics.renderer.material.color;
+		Color c = graphics.GetComponent<Renderer>().material.color;
         if (lastPain + painTime > Time.time) c.a = 0.3f;
         else c.a = 1.0f;
-        graphics.renderer.material.color = c;
+        graphics.GetComponent<Renderer>().material.color = c;
 
 	}
 

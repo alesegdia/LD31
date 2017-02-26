@@ -19,8 +19,8 @@ public class Powerup : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 newvel = this.rigidbody2D.velocity;
+		Vector2 newvel = this.GetComponent<Rigidbody2D>().velocity;
 		newvel.x = velocity;
-        this.rigidbody2D.velocity = newvel;
+        this.GetComponent<Rigidbody2D>().velocity = newvel;
 	}
 }

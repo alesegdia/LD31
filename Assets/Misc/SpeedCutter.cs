@@ -13,11 +13,11 @@ public class SpeedCutter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Vector2 vel = this.rigidbody2D.velocity;
+        Vector2 vel = this.GetComponent<Rigidbody2D>().velocity;
 
         if (Mathf.Abs(vel.x) > max_speed) vel.x = max_speed * Mathf.Sign(vel.x);
         if (Mathf.Abs(vel.y) > max_speed) vel.y = max_speed * Mathf.Sign(vel.y);
 
-        this.rigidbody2D.velocity = vel;
+        this.GetComponent<Rigidbody2D>().velocity = vel;
 	}
 }

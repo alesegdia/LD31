@@ -10,6 +10,6 @@ public class ToParentMover : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        this.rigidbody2D.MovePosition(this.transform.parent.position);
+        this.GetComponent<Rigidbody2D>().MovePosition(this.transform.parent.position);
 	}
 }

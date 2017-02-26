@@ -12,7 +12,7 @@ public class TargetForceFinderMover : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        this.rigidbody2D.AddForce((- this.transform.position + target.transform.position).normalized * force);
+        this.GetComponent<Rigidbody2D>().AddForce((- this.transform.position + target.transform.position).normalized * force);
 
 
 	}

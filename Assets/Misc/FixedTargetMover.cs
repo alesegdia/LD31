@@ -21,7 +21,7 @@ public class FixedTargetMover : MonoBehaviour {
             first = false;
             fixed_velocity = (target.transform.position - this.transform.position).normalized * speed;
         }
-        this.rigidbody2D.velocity = fixed_velocity;
+        this.GetComponent<Rigidbody2D>().velocity = fixed_velocity;
 	
 	}
 }

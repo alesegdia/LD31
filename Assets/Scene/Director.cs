@@ -69,11 +69,11 @@ public class Director : MonoBehaviour {
         divSpawnFactor = ((float)maxLevel) * finalSpawnRelation; 
         //divSpawnFactor = finalSpawnRelation; 
         mobSpawner = GameObject.FindGameObjectWithTag("MobSpawner").GetComponent<MobSpawner>();
-        audio.Play();
+        GetComponent<AudioSource>().Play();
 		now = Time.time;
         logoFadeDone = false;
         storyAlpha = 1.0f;
-        this.renderer.enabled = false;
+        this.GetComponent<Renderer>().enabled = false;
         storyEnabled = false;
         skullEnabled = teyeEnabled = temurEnabled = false;
         nextLevelUp = Time.time + levelUpInterval;
@@ -174,14 +174,14 @@ public class Director : MonoBehaviour {
     {
 		if( Time.time > logoEnableStart )
         {
-            this.renderer.enabled = true;
+            this.GetComponent<Renderer>().enabled = true;
         }
 
-		if( Time.time > logoFadeStart && this.renderer.material.color.a > 0 )
+		if( Time.time > logoFadeStart && this.GetComponent<Renderer>().material.color.a > 0 )
         {
-            Color c = this.renderer.material.color;
+            Color c = this.GetComponent<Renderer>().material.color;
             c.a -= logoFadeStep;
-            this.renderer.material.color = c;
+            this.GetComponent<Renderer>().material.color = c;
         }
 
     }

@@ -22,17 +22,17 @@ public class PlayerController : MonoBehaviour {
 		if( Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) )  ver = 1;
 		if( Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ) hor = -1;
 		if( Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ) hor = 1;
-        controlledGameobject.rigidbody2D.AddForce(new Vector2(hor * speed.y, ver * speed.y));
+        controlledGameobject.GetComponent<Rigidbody2D>().AddForce(new Vector2(hor * speed.y, ver * speed.y));
 
 		// cap
-		Vector2 vel = controlledGameobject.rigidbody2D.velocity;
+		Vector2 vel = controlledGameobject.GetComponent<Rigidbody2D>().velocity;
         if (vel.y > maxSpeed.y)
         {
             vel.y = maxSpeed.y;
         }
 		if (Mathf.Abs(vel.x) > maxSpeed.x) vel.x = maxSpeed.x * Mathf.Sign(vel.x);
-        controlledGameobject.rigidbody2D.velocity = vel;
-        animator.SetFloat("Vertical Speed", controlledGameobject.rigidbody2D.velocity.y);
+        controlledGameobject.GetComponent<Rigidbody2D>().velocity = vel;
+        animator.SetFloat("Vertical Speed", controlledGameobject.GetComponent<Rigidbody2D>().velocity.y);
 
 	}
 }
